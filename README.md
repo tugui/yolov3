@@ -32,10 +32,10 @@ $ pip install -U -r requirements.txt
 
 ## Tutorials
 
-* <a href="https://colab.research.google.com/github/ultralytics/yolov3/blob/master/tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
-* [Train Custom Data](https://github.com/ultralytics/yolov3/wiki/Train-Custom-Data) < highly recommended!!
+* [Notebook](https://github.com/ultralytics/yolov3/blob/master/tutorial.ipynb) <a href="https://colab.research.google.com/github/ultralytics/yolov3/blob/master/tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+* [Train Custom Data](https://github.com/ultralytics/yolov3/wiki/Train-Custom-Data) << highly recommended
 * [GCP Quickstart](https://github.com/ultralytics/yolov3/wiki/GCP-Quickstart)
-* [Docker Quickstart Guide](https://github.com/ultralytics/yolov3/wiki/Docker-Quickstart) 
+* [Docker Quickstart Guide](https://github.com/ultralytics/yolov3/wiki/Docker-Quickstart)  ![Docker Pulls](https://img.shields.io/docker/pulls/ultralytics/yolov3?logo=docker)
 * [A TensorRT Implementation of YOLOv3 and YOLOv4](https://github.com/wang-xinyu/tensorrtx/tree/master/yolov3-spp) 
 
 
@@ -174,7 +174,7 @@ To access an up-to-date working environment (with all dependencies including CUD
 
 - **GCP** Deep Learning VM with $300 free credit offer: See our [GCP Quickstart Guide](https://github.com/ultralytics/yolov3/wiki/GCP-Quickstart) 
 - **Google Colab Notebook** with 12 hours of free GPU time. <a href="https://colab.research.google.com/github/ultralytics/yolov3/blob/master/tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
-- **Docker Image** https://hub.docker.com/r/ultralytics/yolov5. See [Docker Quickstart Guide](https://github.com/ultralytics/yolov3/wiki/Docker-Quickstart)
+- **Docker Image** https://hub.docker.com/r/ultralytics/yolov3. See [Docker Quickstart Guide](https://github.com/ultralytics/yolov3/wiki/Docker-Quickstart) ![Docker Pulls](https://img.shields.io/docker/pulls/ultralytics/yolov3?logo=docker)
 
 
 ## Citation
@@ -185,7 +185,7 @@ To access an up-to-date working environment (with all dependencies including CUD
 ## About Us
 
 Ultralytics is a U.S.-based particle physics and AI startup with over 6 years of expertise supporting government, academic and business clients. We offer a wide range of vision AI services, spanning from simple expert advice up to delivery of fully customized, end-to-end production solutions, including:
-- **Cloud-based AI** surveillance systems operating on **hundreds of HD video streams in realtime.**
+- **Cloud-based AI** systems operating on **hundreds of HD video streams in realtime.**
 - **Edge AI** integrated into custom iOS and Android apps for realtime **30 FPS video inference.**
 - **Custom data training**, hyperparameter evolution, and model exportation to any destination.
 
