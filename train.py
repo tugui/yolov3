@@ -89,6 +89,7 @@ def train(hyp):
 
     # Initialize model
     model = Darknet(cfg).to(device)
+    print(model)
 
     # Optimizer
     pg0, pg1, pg2 = [], [], []  # optimizer parameter groups

@@ -14,7 +14,7 @@ def test(cfg,
          batch_size=16,
          imgsz=416,
          conf_thres=0.001,
-         iou_thres=0.6,  # for nms
+         iou_thres=0.5,  # for nms
          save_json=False,
          single_cls=False,
          augment=False,
@@ -41,7 +41,7 @@ def test(cfg,
             load_darknet_weights(model, weights)
 
         # Fuse
-        model.fuse()
+        #model.fuse()
         model.to(device)
 
         if device.type != 'cpu' and torch.cuda.device_count() > 1:
