@@ -100,6 +100,16 @@ def coco80_to_coco91_class():  # converts 80-index (val2014) to 91-index (paper)
     return x
 
 
+def xyxy2xywh2(x):
+    # Convert nx4 boxes from [x1, y1, x2, y2] to [x1, y1, w, h] where xy1=top-left, xy2=bottom-right
+    y = torch.zeros_like(x) if isinstance(x, torch.Tensor) else np.zeros_like(x)
+    y[:, 0] = x[:, 0]  # left
+    y[:, 1] = x[:, 1]  # top
+    y[:, 2] = x[:, 2] - x[:, 0]  # width
+    y[:, 3] = x[:, 3] - x[:, 1]  # height
+    return y
+
+
 def xyxy2xywh(x):
     # Convert nx4 boxes from [x1, y1, x2, y2] to [x, y, w, h] where xy1=top-left, xy2=bottom-right
     y = torch.zeros_like(x) if isinstance(x, torch.Tensor) else np.zeros_like(x)
@@ -1069,7 +1079,7 @@ def plot_results(start=0, stop=0, bucket='', id=()):  # from utils.utils import 
                 if i in [0, 1, 2, 5, 6, 7]:
                     y[y == 0] = np.nan  # dont show zero loss values
                     # y /= y[0]  # normalize
-                ax[i].plot(x, y, marker='.', label=Path(f).stem, linewidth=2, markersize=8)
+                ax[i].plot(x, y, marker='.', label=Path(f).stem, linewidth=1, markersize=8)
                 ax[i].set_title(s[i])
                 # if i in [5, 6, 7]:  # share train and val loss y axes
                 #     ax[i].get_shared_y_axes().join(ax[i], ax[i - 5])
@@ -1077,4 +1087,4 @@ def plot_results(start=0, stop=0, bucket='', id=()):  # from utils.utils import 
             print('Warning: Plotting error for %s, skipping file' % f)
 
     ax[1].legend()
-    fig.savefig('results.png', dpi=200)
+    fig.savefig('results2.png', dpi=200)

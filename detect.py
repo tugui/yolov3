@@ -66,7 +66,6 @@ def detect(save_img=False):
         torch.backends.cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz)
     else:
-        save_img = True
         dataset = LoadImages(source, img_size=imgsz)
 
     # Get names and colors
@@ -108,7 +107,9 @@ def detect(save_img=False):
             else:
                 p, s, im0 = path, '', im0s
 
-            save_path = str(Path(out) / Path(p).name)
+            save_path = str(Path(out) / p.split('/')[-2] / Path(p).name)
+            if not os.path.exists(Path(save_path).parent):
+                Path(save_path).parent.mkdir()
             s += '%gx%g ' % img.shape[2:]  # print string
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  #  normalization gain whwh
             if det is not None and len(det):
@@ -133,15 +134,19 @@ def detect(save_img=False):
                             file.write(('%g ' * 5 + '\n') % (cls, *xywh))  # label format
                     
                     if save_wider:
-                        xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4))).view(-1).tolist()  # xywh
+                        xywh = (xyxy2xywh2(torch.tensor(xyxy).view(1, 4))).view(-1).tolist()  # xywh
                         with open(save_path[:save_path.rfind('.')] + '.txt', 'a') as file:
-                            file.write(('%g ' * 5 + '\n') % (*xywh, cls))  # label format
+                            file.write(('%g ' * 5 + '\n') % (*xywh, conf))  # label format
 
                     if save_img or view_img:  # Add bbox to image
                         label = '%s %.2f' % (names[int(cls)], conf)
                         plot_one_box(xyxy, im0, label=label, color=colors[int(cls)])
             else:
-                print('?\n')
+                if save_wider:
+                    with open(save_path[:save_path.rfind('.')] + '.txt', 'a') as file:
+                        file.write('%s\n' % save_path[save_path.rfind('/')+1:save_path.rfind('.')]) # file name
+                        file.write('%d\n' % 0) # boxes count
+                print('?')
 
             # Print time (inference + NMS)
             print('%sDone. (%.3fs)' % (s, t2 - t1))
